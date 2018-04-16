@@ -26,5 +26,15 @@ namespace MVC5.Controllers
 
             return View();
         }
+
+        public ActionResult Sample(String letterCase)
+        {
+            var output = "ABCDE";
+            if (letterCase == "lower")
+            {
+                return Content(output.ToLower());
+            }
+            return Content(output);
+        }
     }
 }
