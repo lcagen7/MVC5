@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MVC5.Controllers
 {
+    [RoutePrefix("AS")]
     public class ActionSelectorsController : Controller
     {
         private List<ASelector> ASelectorList = new List<ASelector>()
@@ -15,6 +16,7 @@ namespace MVC5.Controllers
             new ASelector() {ID=2, Name="Two"}
         };
 
+        [Route("GetMessage1")]
         public string GetMessage1()
         {
             return "This is message 1";
@@ -32,19 +34,19 @@ namespace MVC5.Controllers
             return View(ASelectorList);
         }
 
-        // GET: ActionSelectors/Details/5
+        // GET: Details/5
         public ActionResult Details(int id)
         {
             return View(ASelectorList[0]);
         }
 
-        // GET: ActionSelectors/Create
+        // GET: Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ActionSelectors/Create
+        // POST: Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -60,14 +62,17 @@ namespace MVC5.Controllers
             }
         }
 
-        // GET: ActionSelectors/Edit/5
+        // GET: Edit/5
+        [HttpGet]
+        [Route("Get/{id}")]
         public ActionResult Edit(int id)
         {
             return View(ASelectorList[0]);
         }
 
-        // POST: ActionSelectors/Edit/5
+        // POST: Edit/5
         [HttpPost]
+        [Route("Edit/{id}")]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -82,13 +87,13 @@ namespace MVC5.Controllers
             }
         }
 
-        // GET: ActionSelectors/Delete/5
+        // GET: Delete/5
         public ActionResult Delete(int id)
         {
             return View(ASelectorList[0]);
         }
 
-        // POST: ActionSelectors/Delete/5
+        // POST: Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -105,13 +110,14 @@ namespace MVC5.Controllers
         }
 
         [ActionName("AS_About")]
+        [Route("AS_About")]
         public ActionResult About()
         {
             //Have to specify the name or otherwise view engine will search for AS_About.
             return View("About");
         }
 
-        [Route("ActionSelectors/AS_About_2")]
+        [Route("AS_About_2")]
         public ActionResult About2()
         {
             //Have to specify the name or otherwise view engine will search for AS_About.
